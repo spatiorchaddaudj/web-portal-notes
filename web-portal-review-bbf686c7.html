@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mk体育 · 轻量导航介绍页</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(145deg, #fde9e0 0%, #fce4d6 30%, #ffd9c0 70%, #fbdac4 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0 20px 40px;
+            margin: 0;
+        }
+
+        .page-wrapper {
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        /* 顶部导航 */
+        .nav-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 0 10px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .nav-brand {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #7d4b3a;
+            letter-spacing: 1px;
+            background: rgba(255, 245, 235, 0.6);
+            padding: 0 18px;
+            border-radius: 60px;
+            line-height: 2.6rem;
+            box-shadow: 0 2px 6px rgba(170, 90, 50, 0.08);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #5f3e2e;
+            font-weight: 500;
+            font-size: 1.1rem;
+            padding: 6px 0;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .nav-links a:hover {
+            border-bottom-color: #b5755a;
+            color: #3d2b1f;
+        }
+
+        /* hero 卡片区 */
+        .hero-card {
+            background: rgba(255, 250, 245, 0.8);
+            backdrop-filter: blur(2px);
+            border-radius: 48px 48px 28px 28px;
+            padding: 48px 40px 40px;
+            margin: 24px 0 32px;
+            box-shadow: 0 16px 40px -12px rgba(150, 80, 40, 0.18);
+            transition: box-shadow 0.3s;
+        }
+
+        .hero-card:hover {
+            box-shadow: 0 20px 48px -10px rgba(140, 70, 30, 0.25);
+        }
+
+        .hero-title {
+            font-size: 2.8rem;
+            font-weight: 600;
+            color: #552e1c;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            margin-bottom: 18px;
+        }
+
+        .hero-sub {
+            font-size: 1.2rem;
+            color: #604433;
+            max-width: 700px;
+            line-height: 1.7;
+            margin-bottom: 28px;
+        }
+
+        .hero-highlight {
+            background: #ffffffd9;
+            display: inline-block;
+            padding: 8px 28px;
+            border-radius: 60px;
+            font-weight: 500;
+            color: #653f2b;
+            box-shadow: 0 4px 12px rgba(170, 100, 60, 0.10);
+        }
+
+        .hero-highlight a {
+            color: #854f34;
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 2px solid #dbaa8b;
+            transition: border-color 0.15s, background 0.15s;
+        }
+
+        .hero-highlight a:hover {
+            border-bottom-color: #a05838;
+            background: #f7e5da;
+        }
+
+        /* 核心介绍 (简约段落) */
+        .intro-section {
+            background: #ffffffec;
+            backdrop-filter: blur(3px);
+            border-radius: 32px;
+            padding: 34px 36px;
+            margin: 30px 0 36px;
+            box-shadow: 0 8px 22px rgba(140, 80, 45, 0.08);
+        }
+
+        .intro-section h2 {
+            font-size: 1.9rem;
+            font-weight: 500;
+            color: #462d1f;
+            margin-bottom: 18px;
+            border-left: 5px solid #c48765;
+            padding-left: 20px;
+        }
+
+        .intro-section p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #2e1e14;
+            margin-bottom: 14px;
+        }
+
+        .intro-section a {
+            color: #854f34;
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 1.5px dashed #cfa786;
+        }
+
+        .intro-section a:hover {
+            border-bottom-style: solid;
+            color: #4e2c1b;
+        }
+
+        /* 三个场景模块 — 采用卡片网格 */
+        .scenes-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+            margin: 40px 0 48px;
+        }
+
+        @media (max-width: 860px) {
+            .scenes-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            .nav-bar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-card {
+                padding: 30px 20px;
+            }
+            .intro-section {
+                padding: 24px 20px;
+            }
+            .faq-card {
+                padding: 20px 18px;
+            }
+        }
+
+        .scene-card {
+            background: #fffbf7;
+            border-radius: 32px;
+            padding: 30px 24px 32px;
+            box-shadow: 0 10px 24px -6px rgba(115, 65, 30, 0.08);
+            transition: transform 0.2s, box-shadow 0.25s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .scene-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 22px 34px -10px rgba(120, 65, 30, 0.18);
+        }
+
+        .scene-icon {
+            font-size: 2.6rem;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .scene-card h3 {
+            font-size: 1.7rem;
+            font-weight: 500;
+            color: #4b2e1c;
+            margin-bottom: 12px;
+        }
+
+        .scene-card p {
+            color: #3e2a1d;
+            line-height: 1.7;
+            font-size: 1rem;
+            flex: 1;
+        }
+
+        .scene-tag {
+            background: #f3ded0;
+            color: #4c2c1a;
+            padding: 8px 18px;
+            border-radius: 40px;
+            display: inline-block;
+            margin-top: 16px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            align-self: flex-start;
+        }
+
+        /* FAQ 摘要 —— 常见说明 */
+        .faq-card {
+            background: rgba(255, 245, 235, 0.7);
+            backdrop-filter: blur(2px);
+            border-radius: 42px;
+            padding: 32px 36px;
+            margin: 20px 0 30px;
+            box-shadow: 0 8px 24px rgba(160, 90, 45, 0.06);
+        }
+
+        .faq-card h2 {
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: #472d1d;
+            margin-bottom: 28px;
+            border-bottom: 3px dotted #ca9a7c;
+            padding-bottom: 10px;
+        }
+
+        .faq-item {
+            margin-bottom: 24px;
+        }
+
+        .faq-question {
+            font-weight: 600;
+            color: #5b3623;
+            font-size: 1.15rem;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .faq-question::before {
+            content: "▸";
+            color: #b5795a;
+            font-size: 1.3rem;
+        }
+
+        .faq-answer {
+            color: #3c261b;
+            line-height: 1.7;
+            padding-left: 28px;
+            font-size: 1rem;
+        }
+
+        .faq-answer a {
+            color: #7a4f37;
+            text-decoration: underline wavy #cfa081 1px;
+            text-underline-offset: 4px;
+            font-weight: 500;
+        }
+
+        .faq-answer a:hover {
+            text-decoration: underline solid #864f30;
+        }
+
+        /* 底部温和提示 */
+        .footer-note {
+            margin-top: 40px;
+            padding: 18px 0 12px;
+            text-align: center;
+            color: #6a4c39;
+            font-size: 0.9rem;
+            border-top: 1px solid #dbbca8;
+            width: 100%;
+        }
+
+        .footer-note a {
+            color: #663f28;
+            text-decoration: none;
+            border-bottom: 1px dotted #b28062;
+        }
+
+        .footer-note a:hover {
+            border-bottom: 2px solid #8a5235;
+        }
+
+        .soft-divider {
+            height: 2px;
+            background: linear-gradient(to right, transparent, #dbbca0, transparent);
+            margin: 18px 0 6px;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <!-- 顶部导航 -->
+        <nav class="nav-bar">
+            <span class="nav-brand">mk体育</span>
+            <div class="nav-links">
+                <a href="#intro">介绍</a>
+                <a href="#scenes">场景</a>
+                <a href="#faq">说明</a>
+            </div>
+        </nav>
+
+        <!-- hero 区 -->
+        <div class="hero-card">
+            <div class="hero-title">轻量导航 · 一目了然</div>
+            <div class="hero-sub">
+                一个快速了解 <a href="https://web-portal-mksport.com" style="color:#854f34; font-weight:600; text-decoration: underline 2px #d0997a;">mk体育</a> 用途的简洁页面。没有冗余信息，只有你关心的方向。
+            </div>
+            <div class="hero-highlight">
+                ⚡ 核心站点：<a href="https://web-portal-mksport.com">mk体育</a>
+            </div>
+        </div>
+
+        <!-- 核心介绍 -->
+        <div class="intro-section" id="intro">
+            <h2>为什么会有这样一个页面？</h2>
+            <p>很多朋友第一次接触 <a href="https://web-portal-mksport.com">mk体育</a> 时，想快速了解它是否适合自己。这个介绍页就是为了帮你节省时间：用最直接的内容，说明网站主要面向什么、常见的使用方式是什么。</p>
+            <p>我们不过度包装，也不做任何夸张的描述。你只需要花两分钟阅读，就能判断这个网站的方向与你是否契合。如果感兴趣，可以直接通过页面中的链接体验 <a href="https://web-portal-mksport.com">mk体育</a> 本身。</p>
+            <p style="margin-top:8px; font-size:0.95rem; color:#644b39;">—— 温和、坦诚，是这里的底色。</p>
+        </div>
+
+        <!-- 三个场景模块 -->
+        <h2 style="font-size:1.9rem; font-weight:500; color:#462d1f; margin: 0 0 8px 0; border-left:5px solid #c48765; padding-left:20px;" id="scenes">常见使用场景</h2>
+        <div class="scenes-grid">
+            <div class="scene-card">
+                <span class="scene-icon">🔍</span>
+                <h3>快速识别</h3>
+                <p>当你看到 <a href="https://web-portal-mksport.com" style="color:#7a4f37; font-weight:600; text-decoration:underline 1px dashed #b9876b;">mk体育</a> 这个名字，想知道它具体提供什么服务。通过场景化浏览，你可以迅速对网站定位建立认知。</p>
+                <span class="scene-tag">信息获取</span>
+            </div>
+            <div class="scene-card">
+                <span class="scene-icon">📌</span>
+                <h3>功能预览</h3>
+                <p>不打算立刻深入，但希望了解 <a href="https://web-portal-mksport.com" style="color:#7a4f37; font-weight:600; text-decoration:underline 1px dashed #b9876b;">mk体育</a> 的主要方向。这里列出了几个典型模块，帮助你判断是否值得继续探索。</p>
+                <span class="scene-tag">方向判断</span>
+            </div>
+            <div class="scene-card">
+                <span class="scene-icon">🧭</span>
+                <h3>导航跳转</h3>
+                <p>已经决定去看看，但需要一个明确的入口。页面中的链接全部指向 <a href="https://web-portal-mksport.com" style="color:#7a4f37; font-weight:600; text-decoration:underline 1px dashed #b9876b;">mk体育</a>，点击即可前往，没有多余的中转。</p>
+                <span class="scene-tag">直达站点</span>
+            </div>
+        </div>
+
+        <!-- 常见说明 (FAQ摘要) -->
+        <div class="faq-card" id="faq">
+            <h2>可能想问的几点</h2>
+
+            <div class="faq-item">
+                <div class="faq-question">这个网站是做什么的？</div>
+                <div class="faq-answer"><a href="https://web-portal-mksport.com">mk体育</a> 是一个综合信息型站点，用户可通过它了解特定体育相关内容。你可以直接访问网站，感受它的整体风格和内容组织。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">页面里的链接安全吗？</div>
+                <div class="faq-answer">所有链接都指向 <a href="https://web-portal-mksport.com">mk体育</a> 本身，没有经过第三方跳转。建议你根据自己的判断访问，并合理管理浏览习惯。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">为什么没有更多功能介绍？</div>
+                <div class="faq-answer">这个页面定位是轻量导航，目的是帮你快速确认 <a href="https://web-portal-mksport.com">mk体育</a> 是否值得关注。详细功能建议直接去网站内探索，那里有最真实的内容。</div>
+            </div>
+
+            <div class="soft-divider"></div>
+
+            <div style="margin-top:18px; font-style:italic; color:#4d3222;">如果你觉得这个介绍有帮助，或者想进一步了解，随时可以通过 <a href="https://web-portal-mksport.com">mk体育</a> 获得更多信息。</div>
+        </div>
+
+        <!-- 底部 -->
+        <div class="footer-note">
+            <span>基于实际认知 · 温和介绍 <a href="https://web-portal-mksport.com">mk体育</a></span>
+            <span style="margin:0 12px;">·</span>
+            <span>内容页 · 轻量导航</span>
+        </div>
+    </div>
+</body>
+</html>
